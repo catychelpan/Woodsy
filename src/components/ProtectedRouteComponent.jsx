@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, Route } from 'react-router-dom';
 import { GameProgressContext } from '../contexts/GameProgressContext';
 
 const ProtectedRoute = () => {
