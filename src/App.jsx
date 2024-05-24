@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/true-false-game" element={<TrueFalseGame />} />
         <Route path="/find-impact-game" element={<FindImpactGame />} />
-        <Route path="/trash-sort-game" element={<TrashSortingGame />} />
+        <Route path="/trash-sorting-game" element={<TrashSortingGame />} />
         <Route element={<ProtectedRouteComponent />}>
           <Route path='congratulations' element={<Congratulations />}></Route>
         </Route>

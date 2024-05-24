@@ -1,7 +1,7 @@
 const TrueFalseGame = () => {
   return (
     <div>
-      <h1>true false </h1>
+      <h1>true false page</h1>
     </div>
   )
 }

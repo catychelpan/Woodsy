@@ -1,8 +1,23 @@
-@import url('https://fonts.cdnfonts.com/css/neutral-face');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'Neutral Face Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Neutral Face Regular'), url('NeutralFace.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Neutral Face Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Neutral Face Bold'), url('NeutralFaceBold.woff') format('woff');
+}
+  
+
+  
 
 * {
   margin: 0;
@@ -11,5 +26,89 @@
 }
 
 body {
-  font-family: 'Neutral Face', Arial, Helvetica, sans-serif;
+  font-family: 'Neutral Face', sans-serif;
+  background-color: #2A5B5C;
+  color: black;
 }
+
+.parallax-outer {
+  overflow:hidden;
+}
+
+.parallax {
+  height: 110vh;
+  width: 100%;
+  position: relative;
+}
+
+.parallax img {
+  position: absolute;
+}
+
+.flames {
+  width: 30%;
+  bottom: 0%;
+  left: 35%;
+  z-index: 5;
+  opacity: 0;
+  
+}
+
+.intro {
+  position: absolute;
+  left: 20%;
+  /*background-color: #FFFCF3;
+  border-radius: 10px;
+  padding: 5px 15px;
+  border: black solid 1px;*/
+  text-align: center;
+  bottom: 0;
+  opacity: 0;
+  font-size: 1.7rem;
+  font-weight: 700;
+  
+  
+}
+
+#title {
+  left: 55%;
+  z-index: 1;
+  bottom: 0;
+}
+
+.forest {
+  
+  width: 100%;
+  bottom: 0;
+  z-index: 4;
+}
+
+
+#grass {
+  z-index: 6;
+}
+
+.mountain-1 {
+  bottom: 40px;
+  z-index: 2;
+}
+
+
+.mountain-2 {
+  bottom: 20px;
+  z-index: 1;
+}
+
+
+.mountain-2,
+.mountain-1 {
+  
+  width: 100%;
+  bottom: 0;
+  
+}
+
+.about {
+  background-color: #2A5B5C;
+}
+

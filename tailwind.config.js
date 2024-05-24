@@ -15,7 +15,7 @@ export default {
       xl: '28px',
       '2xl': '28px',
       '3xl': '50px',
-      '4xl': '80px',
+      '4xl': '70px',
       '5xl': '100px',
     },
     extend: {

@@ -1,7 +1,7 @@
 const TrashSortingGame = () => {
   return (
     <div>
-      <h1>trash </h1>
+      <h1>trash sorting page</h1>
     </div>
   )
 }

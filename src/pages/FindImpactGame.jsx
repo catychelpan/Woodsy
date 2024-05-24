@@ -2,7 +2,7 @@ const FindImpactGame = () => {
   return (
     <div>
       
-      <h1>find impact </h1>
+      <h1>find impact page</h1>
     
     </div>
   )
