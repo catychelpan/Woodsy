@@ -23,7 +23,9 @@ export default {
         primary: '#0A5859',
         primary_light: '#529395',
         secondary: '#FFFCF3',
+        secondary_dark: '#1C4444',
         white: '#FFFFFF',
+
       },
       boxShadow: {
         '3xl': '13px 13px 0px 0px rgba(0, 0, 0, 0.33);',

@@ -29,9 +29,7 @@ const Landing = () => {
 
     <>
       <Parallax />
-      <div className="about">
-        <CharacterHeroSection />
-      </div>
+      <CharacterHeroSection />
       <GamesSection />
     </>
     

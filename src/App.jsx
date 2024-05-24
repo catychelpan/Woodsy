@@ -2,6 +2,7 @@ import './index.css';
 import ProtectedRouteComponent from './components/ProtectedRouteComponent';
 import React from 'react'
 import { Route, BrowserRouter, Navigate, Routes } from 'react-router-dom';
+import Preloader from './components/Preloader.jsx';
 
 
 const Landing = React.lazy(() => import('./pages/Landing.jsx'))
@@ -16,7 +17,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={<Preloader />} />
+        <Route path="/story" element={<Landing />} />
         <Route path="/true-false-game" element={<TrueFalseGame />} />
         <Route path="/find-impact-game" element={<FindImpactGame />} />
         <Route path="/trash-sorting-game" element={<TrashSortingGame />} />

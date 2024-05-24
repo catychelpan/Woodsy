@@ -14,7 +14,7 @@ function Parallax() {
     const flames = useRef(null);
     const intro = useRef(null);
     const title = useRef(null);
-    const birds = useRef(null);
+   
 
     useEffect(() => {
       let ctx = gsap.context(() => {
@@ -76,7 +76,7 @@ function Parallax() {
         tl.to(
           intro.current,
           {
-            y: "-=990",
+            y: "-=1390",
             opacity:1
           },
           0
@@ -84,7 +84,7 @@ function Parallax() {
         tl.to(
           title.current,
           {
-            y: "-=990",
+            y: "-=1390",
             opacity:1
           },
           0.5
