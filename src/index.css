@@ -23,12 +23,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
 
 body {
   font-family: 'Neutral Face', sans-serif;
-  background-color: #2A5B5C;
+  background-color: white;
   color: black;
+  height: 100%;
 }
 
 .parallax-outer {
@@ -116,6 +118,7 @@ body {
 
   position: absolute;
   width: 100%;
+  
   top: 50%;
   transform: translateY(-50%);
   display: flex;
@@ -172,5 +175,36 @@ body {
   object-fit: cover;
 }
 
+.explore-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;  
+  height: 200px; 
+  font-size: 25px; 
+  color: black;
+  border: black solid 2px;
+  border-radius: 50%; 
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+}
 
+.explore-button:hover {
+  background-color: #2A5B5C;
+  border:  white solid 2px;
+  color: white; /* Change background color on hover */
+  transform: translate(-50%, -50%) scale(1.1); /* Slightly increase size on hover */
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
 

@@ -1,37 +1,31 @@
 import Parallax from "../components/Parallax"
 import CharacterHeroSection from "../components/CharacterHeroSection"
 import GamesSection from "../components/GamesSection"
-import { useEffect } from "react"
-import Lenis from "@studio-freight/lenis/types"
+import { useEffect, useRef } from "react"
+import gsap from "gsap";
+
 
 const Landing = () => {
 
+  const landingRef = useRef(null);
+
   useEffect(() => {
-    const lenis = new Lenis({
-      smooth:true,
+    gsap.from(landingRef.current, {
+      opacity: 0,
+      duration: 1,
+      ease: "power2.out",
     });
+  }, []);
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf)
-    }
-
-    requestAnimationFrame(raf);
-
-    // Clean up on component unmount
-    return () => {
-      lenis.destroy();
-    };
-
-  }, [])
+  
 
   return (
 
-    <>
+    <div ref={landingRef}>
       <Parallax />
       <CharacterHeroSection />
       <GamesSection />
-    </>
+    </div>
     
       
     

@@ -59,7 +59,7 @@ function GamesSection() {
   }
   return (
     <div ref={parallaxRef} className="bg-secondary rounded-t-[100px] max-h-[1330px]">
-        <h1 ref={title1} className="z-0  font-bold text-[300px] pt-[450px] mt-[100px] mr-[50px] text-right leading-[100%] text-primary_light">SAVE THE</h1>
+        <h1 ref={title1} className="z-0  font-bold text-[300px] pt-[450px] mt-[-90px] mr-[50px] text-right leading-[100%] text-primary_light">SAVE THE</h1>
         <h1 ref={title2} className="z-0  font-bold text-[300px] mt-[10px] mr-[50px] text-right leading-[100%] text-primary_light">WOOD</h1>
         <GameCard ref={card1} styles={"bottom-[840px] left-[26%]"} gameName={"True or False"} handlePlayClick={() => handlePlayClick("Game 1")}/>
         <GameCard ref={card2} styles={"bottom-[850px] left-[65%]"} gameName={"Sort It Out"} handlePlayClick={() => handlePlayClick("Game 3")}/>
