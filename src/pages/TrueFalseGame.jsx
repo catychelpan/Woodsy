@@ -1,4 +1,8 @@
+import { useState, useContext, startTransition } from "react";
+import { useNavigate } from "react-router-dom";
 import TrueFalseCard from "../components/TrueFalseCard"
+import { GameProgressContext } from '../contexts/GameProgressContext';
+
 const TrueFalseGame = () => {
 
   const facts = [
@@ -32,20 +36,45 @@ const TrueFalseGame = () => {
     },
   ]
 
-  let currentCard = 0;
-  const unansweredCards = [0,1,2,3,4,5,6,7,8,9];
+  const [unansweredCards, setUnansweredCards] = useState([0, 1, 2, 3]);
+  const [currentCard, setCurrentCard] = useState(unansweredCards[0]);
+  const { handleGameCompletion } = useContext(GameProgressContext);
+  const navigate = useNavigate();
 
+
+  //also add animation to switch to the next card
   function handleNextCard(gotItRight) {
-    //if for the previous user answered in the right way -> 
-    //delete the index of that question from array
 
-    //change curent card to the index of the one after 
-    //if it was already the last index -> set it back to refer to the current 0-indexed element
+    setUnansweredCards((prevUnansweredCards) => {
+      let updatedUnansweredCards = [...prevUnansweredCards];
+      const currentIndex = updatedUnansweredCards.indexOf(currentCard);
 
-    //if there are no more elements in the unanswered array -> set game won to true
-    //and redirect to the landing 
+      if (gotItRight) {
+        updatedUnansweredCards.splice(currentIndex, 1);
+        if (updatedUnansweredCards.length === 0) {
+          handleGameCompletion("trueFalseGame");
+          //redirect to the landing
+          startTransition(() => {
+            navigate("/story");
+          });
 
+        }
+        const nextIndex = currentIndex === updatedUnansweredCards.length ? 0 : currentIndex;
+        setCurrentCard(updatedUnansweredCards[nextIndex]);
+      }else{
+        const nextIndex = currentIndex === updatedUnansweredCards.length - 1 ? 0 : currentIndex + 1;
+        setCurrentCard(updatedUnansweredCards[nextIndex]);
+      }
+
+      
+      
+      return updatedUnansweredCards;
+    });
+
+ 
   }
+
+
 
   return (
     <div className="bg-primary flex">
@@ -56,12 +85,14 @@ const TrueFalseGame = () => {
       </div>
 
       <div className="px-[20px] w-[52%] justify-center flex flex-col items-center gap-8">
-        <TrueFalseCard 
-        questionNumber={facts[currentCard].questionNumber} 
-        text={facts[currentCard].text} 
-        isWrongOrRight={facts[currentCard].isWrongOrRight} 
-        ifWrong={facts[currentCard].ifWrong}
-        IfRight={facts[currentCard].ifRight} />
+          <TrueFalseCard
+            questionNumber={facts[currentCard].questionNumber}
+            text={facts[currentCard].text}
+            isWrongOrRight={facts[currentCard].isWrongOrRight}
+            ifWrong={facts[currentCard].ifWrong}
+            ifRight={facts[currentCard].ifRight}
+            onNextClick={handleNextCard}
+          />
       </div>
       
     </div>

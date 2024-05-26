@@ -8,7 +8,7 @@ const ProtectedRoute = () => {
 
   return (
     // Render Congratulations conditionally
-    allGamesCompleted ? <Outlet/> : <Navigate to="/" />
+    allGamesCompleted ? <Outlet/> : <Navigate to="/story" />
   );
 
   

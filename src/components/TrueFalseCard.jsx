@@ -1,43 +1,65 @@
-import {useState} from 'react'
+/* eslint-disable react/prop-types */
+import {useEffect, useState} from 'react'
 import {motion} from 'framer-motion'
 
 const TrueFalseCard = ({questionNumber, text, isWrongOrRight, ifWrong, ifRight, onNextClick}) => {
     const [isFlipped, setIsFlipped] = useState(false)
     const [isAnimating, setIsAnimating] = useState(false)
     const [isFlipAllowed, setIsFlipAllowed] = useState(false)
+    const [isAnsweredRight, setIsAnsweredRight] = useState(false)
 
-    let gotItRight = false;
+
+    
+    //states to render the card content based on whether the user answered right or wrong
+    const [resultText, setResultText] = useState(ifRight);
+    const [resultImage, setResultImage] = useState('');
+
+    useEffect(() => {
+        setIsFlipAllowed(false)
+        setIsAnsweredRight(false)
+    },[questionNumber])
+
+    
 
     function handleFlip() {
 
-        if (isFlipAllowed){
-
-            if(!isAnimating) {
-                setIsFlipped(!isFlipped)
-                setIsAnimating(true)
-            }
-
-        }
+        if (isFlipAllowed && !isAnimating) {
+            setIsFlipped(!isFlipped);
+            setIsAnimating(true);
+          }
         
     }
 
     function checkAnswer(answer) {
 
+        setIsFlipAllowed(true)
+        
+
         if (answer === isWrongOrRight){
-            gotItRight = true;
+            
+            setResultText(ifRight)
+            setResultImage('../../public/TrueFalse/check-sign.svg')
+            setIsAnsweredRight(true);
+
+        }else {
+
+            setResultText(ifWrong)
+            setResultImage('../../public/TrueFalse/cross-sign.svg')
+
         }
+
         if(!isAnimating) {
             setIsFlipped(!isFlipped)
             setIsAnimating(true)
-            setIsFlipAllowed(true) 
         }
-
 
     }
 
+
+
     const invokeNextClick = () => {
         
-        onNextClick(gotItRight);
+        onNextClick(isAnsweredRight);
     }
 
   return (
@@ -60,8 +82,8 @@ const TrueFalseCard = ({questionNumber, text, isWrongOrRight, ifWrong, ifRight, 
             </div>
 
             <div className="flip-card-back h-full rounded-[30px] bg-primary_light flex flex-col items-center justify-center gap-9 px-[60px] py-[80px]">
-                <img src="" alt="" />
-                <p className="text-[20px] text-white text-center leading-[120%]">{text}</p>
+                <img src={resultImage} alt="" />
+                <p className="text-[20px] text-white text-center leading-[120%]">{resultText}</p>
                 <button className="py-[22px] rounded-xl px-[35px] border-2 border-white text-[30px] font-bold text-white" onClick={invokeNextClick}>NEXT</button>
                 
             </div>
