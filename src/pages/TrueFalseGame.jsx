@@ -1,7 +1,8 @@
-import { useState, useContext, startTransition } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import TrueFalseCard from "../components/TrueFalseCard"
 import { GameProgressContext } from '../contexts/GameProgressContext';
+import gsap from "gsap";
 
 const TrueFalseGame = () => {
 
@@ -40,6 +41,27 @@ const TrueFalseGame = () => {
   const [currentCard, setCurrentCard] = useState(unansweredCards[0]);
   const { handleGameCompletion } = useContext(GameProgressContext);
   const navigate = useNavigate();
+  const trueFalseRef = useRef();
+
+//for smooth transition into the page
+  useEffect(() => {
+    gsap.from(trueFalseRef.current, {
+      opacity: 0,
+      duration: 1,
+      ease: "power2.out",
+    });
+  }, []);
+
+
+  const navigateAndScroll = () => {
+    navigate("/story");
+    setTimeout(() => {
+      const gameSection = document.getElementById("gameSection");
+      if (gameSection) {
+        gameSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100); // Delay for smoother scroll
+  };
 
 
   //also add animation to switch to the next card
@@ -54,13 +76,13 @@ const TrueFalseGame = () => {
         if (updatedUnansweredCards.length === 0) {
           handleGameCompletion("trueFalseGame");
           //redirect to the landing
-          startTransition(() => {
-            navigate("/story");
-          });
-
+          navigateAndScroll();
+          
+        }else{
+          const nextIndex = currentIndex === updatedUnansweredCards.length ? 0 : currentIndex;
+          setCurrentCard(updatedUnansweredCards[nextIndex]);
         }
-        const nextIndex = currentIndex === updatedUnansweredCards.length ? 0 : currentIndex;
-        setCurrentCard(updatedUnansweredCards[nextIndex]);
+        
       }else{
         const nextIndex = currentIndex === updatedUnansweredCards.length - 1 ? 0 : currentIndex + 1;
         setCurrentCard(updatedUnansweredCards[nextIndex]);
@@ -77,7 +99,7 @@ const TrueFalseGame = () => {
 
 
   return (
-    <div className="bg-primary flex">
+    <div ref={trueFalseRef} className="bg-primary flex">
       <div className="px-[30px] w-[48%] justify-center h-[100vh] flex flex-col items-center gap-8 bg-primary_light rounded-3xl">
         <h1 className="max-w-xl text-white text-center font-bold text-4xl leading-[120%]">True or False</h1>
         <p className="m-b-[20px] text-white font-bold text-center max-w-[415px]">You will need to see 10 facts about climate change and decide what is a misconception and what is an actual fact.</p>

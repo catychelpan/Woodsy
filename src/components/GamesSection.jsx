@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import GameCard from './GameCard';
@@ -12,6 +13,8 @@ function GamesSection() {
     const title1 = useRef(null);
     const title2 = useRef(null);
     const parallaxRef = useRef(null);
+
+    const navigate = useNavigate();
 
     
 
@@ -39,26 +42,38 @@ function GamesSection() {
         }
       , []);
 
+
+    const navigateToGame = (gameLink) => {
+      gsap.to(".bg-white", {
+        opacity: 0,
+        duration: 0.75,
+        onComplete: () => {
+          navigate(gameLink);
+      },
+      });
+    };
+
   const handlePlayClick = (gameName) => {
 
     switch (gameName) {
+      //for smooth transition from this page to game page
       case 'Game 1':
-        window.location.href = "/true-false-game"; 
+        navigateToGame("/true-false-game"); 
         break;
       case 'Game 2':
-        window.location.href = "/find-impact-game"; 
+        navigateToGame("/find-impact-game"); 
         break;
       case 'Game 3':
-        window.location.href = "/trash-sorting-game";
+        navigateToGame("/trash-sorting-game");
         break;
       default:
-        // Handle default case
+      
         break;
     }
 
   }
   return (
-    <div ref={parallaxRef} className="bg-secondary rounded-t-[100px] max-h-[1330px]">
+    <div id="gameSection" ref={parallaxRef} className="bg-secondary rounded-t-[100px] max-h-[1330px]">
         <h1 ref={title1} className="z-0  font-bold text-[300px] pt-[450px] mt-[-90px] mr-[50px] text-right leading-[100%] text-primary_light">SAVE THE</h1>
         <h1 ref={title2} className="z-0  font-bold text-[300px] mt-[10px] mr-[50px] text-right leading-[100%] text-primary_light">WOOD</h1>
         <GameCard ref={card1} styles={"bottom-[840px] left-[26%]"} gameName={"True or False"} handlePlayClick={() => handlePlayClick("Game 1")}/>

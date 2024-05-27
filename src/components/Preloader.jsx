@@ -26,7 +26,7 @@ const Preloader = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const imgs = document.querySelectorAll(".img");
+        
     
         gsap.set(".img", {
           top: "45%",
