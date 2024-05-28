@@ -144,7 +144,7 @@ const TrueFalseGame = () => {
     <div ref={trueFalseRef} className="bg-primary flex">
       <div className="px-[30px] w-[48%] justify-center h-[100vh] flex flex-col items-center gap-8 bg-primary_light rounded-3xl">
         <h1 className="max-w-xl text-white text-center font-bold text-4xl leading-[120%]">True or False</h1>
-        <p className="m-b-[20px] text-white font-bold text-center max-w-[415px]">You will need to see 10 facts about climate change and decide what is a misconception and what is an actual fact.</p>
+        <p className="tracking-widest m-b-[20px] text-white font-bold text-center max-w-[415px]">You will need to see 10 facts about climate change and decide what is a misconception and what is an actual fact.</p>
         <img src="../../public/TrueFalse/TrueFalseCharacter.svg" alt="Check Caharcter" />
       </div>
 
