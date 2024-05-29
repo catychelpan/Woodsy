@@ -23,19 +23,19 @@ const DroppableWasteContainer = ({ recycleType }) => {
         <div 
           {...provided.droppableProps} 
           ref={provided.innerRef} 
-          className="h-[200px] w-[100px] relative flex justify-center items-end"
+          className="2xl:h-[200px] 2xl:w-[260px] xl:h-[170px] xl:w-[210px] md:h-[120px] md:w-[160px] mt-[130px] sm:h-[70px] sm:w-[120px] relative flex justify-center items-end"
         >
 
             <img 
                 src={binImages[recycleType].lid} 
                 alt={`${recycleType} lid`} 
-                className={`lg:max-w-[245px] relative bottom-[135%] transform transition-transform duration-300 ${snapshot.isDraggingOver ? 'rotate-45' : 'rotate-0'}`}
+                className={`2xl:max-w-[245px] relative bottom-[175%] 2xl:bottom-[136%] xl:bottom-[136%] md:bottom-[147%] sm:bottom-[192%] transform transition-transform duration-300 ${snapshot.isDraggingOver ? 'rotate-45' : 'rotate-0'}`}
                 
             />
             <img 
                 src={binImages[recycleType].bin} 
                 alt={`${recycleType} bin`} 
-                className="lg:max-w-[245px] absolute bottom-0"
+                className="2xl:max-w-[245px] absolute bottom-0"
                 
             />
           
