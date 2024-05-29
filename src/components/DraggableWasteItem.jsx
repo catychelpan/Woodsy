@@ -3,7 +3,7 @@ import { Draggable } from "react-beautiful-dnd"
 /* eslint-disable react/prop-types */
 
 
-const DraggableWasteItem = ({itemIndex, itemName, itemImage, relevantContainer}) => {
+const DraggableWasteItem = ({itemIndex, itemName, itemImage}) => {
     
   return (
     <Draggable draggableId={itemName} index={itemIndex}>

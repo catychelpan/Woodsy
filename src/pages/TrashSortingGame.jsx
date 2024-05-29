@@ -5,6 +5,7 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import DraggableWasteItem from "../components/DraggableWasteItem";
 import DroppableWasteContainer from "../components/DroppableWasteContainer";
 import { GameProgressContext } from '../contexts/GameProgressContext';
+import {wasteItems} from "../data";
 
 const TrashSortingGame = () => {
 
@@ -14,99 +15,7 @@ const TrashSortingGame = () => {
 
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
 
-  const wasteItems = [
-    {
-      index: 0,
-      itemName: "Egg Shell",
-      itemImage: "../../public/WasteSorting/Compost/egg-shell.png",
-      relevantContainer: "compost",
-    },
-    {
-      index: 1,
-      itemName: "Ceramics",
-      itemImage: "../../public/WasteSorting/Landfill/ceramics.png",
-      relevantContainer: "landfill",
-    },
-    {
-      index: 2,
-      itemName: "Fruit Peels",
-      itemImage: "../../public/WasteSorting/Compost/fruitpeels.png",
-      relevantContainer: "compost",
-    },
-    {
-      index: 3,
-      itemName: "Aluminium Foil",
-      itemImage: "../../public/WasteSorting/Recycling/aluminium-foil.png",
-      relevantContainer: "recycling",
-    },
-    {
-      index: 4,
-      itemName: "Plastic Bottle",
-      itemImage: "../../public/WasteSorting/Recycling/plastic-bottle.png",
-      relevantContainer: "recycling",
-    },
-    {
-      index: 5,
-      itemName: "Diapers",
-      itemImage: "../../public/WasteSorting/Landfill/diapers.png",
-      relevantContainer: "landfill",
-    },
-    {
-      index: 6,
-      itemName: "Tea Bag",
-      itemImage: "../../public/WasteSorting/Compost/teabag.png",
-      relevantContainer: "compost",
-    },
-    {
-      index: 7,
-      itemName: "Pizza",
-      itemImage: "../../public/WasteSorting/Landfill/pizza.png",
-      relevantContainer: "landfill",
-    },
-    {
-      index: 8,
-      itemName: "Coffee Filter",
-      itemImage: "../../public/WasteSorting/Compost/used-coffe-filter.png",
-      relevantContainer: "compost",
-    },
-    {
-      index: 9,
-      itemName: "Cereal Box",
-      itemImage: "../../public/WasteSorting/Recycling/cereal-box.png",
-      relevantContainer: "recycling",
-    },
-    {
-      index: 10,
-      itemName: "Plastic Bag",
-      itemImage: "../../public/WasteSorting/Landfill/plastic-bag.png",
-      relevantContainer: "landfill",
-    },
-    {
-      index: 11,
-      itemName: "Styrofoam Box",
-      itemImage: "../../public/WasteSorting/Landfill/styrofoam-box.png",
-      relevantContainer: "landfill",
-    },
-    {
-      index: 12,
-      itemName: "Stale Bread",
-      itemImage: "../../public/WasteSorting/Compost/stale-bread.png",
-      relevantContainer: "compost",
-    },
-    {
-      index: 13,
-      itemName: "Newspaper",
-      itemImage: "../../public/WasteSorting/Recycling/newspaper.png",
-      relevantContainer: "recycling",
-    },
-    {
-      index: 14,
-      itemName: "Tin Food Can",
-      itemImage: "../../public/WasteSorting/Recycling/tin-food-can.png",
-      relevantContainer: "recycling",
-    },
-    
-  ];
+  //const wasteItems = wasteItems;
 
   //for smooth transition into the page
     useEffect(() => {
@@ -131,9 +40,7 @@ const TrashSortingGame = () => {
 
     const handleEndDrag = (event) => {
       
-      const {destination, source, draggableId} = event;
-
-
+      const {destination, source} = event;
 
       if (!destination) {
         return;
@@ -202,7 +109,6 @@ const TrashSortingGame = () => {
                 itemIndex={wasteItems[currentItemIndex].index} 
                 itemName={wasteItems[currentItemIndex].itemName}
                 itemImage={wasteItems[currentItemIndex].itemImage} 
-                relevantContainer={wasteItems[currentItemIndex].relevantContainer}
               />
               {provided.placeholder}
 
