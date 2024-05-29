@@ -1,14 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import gsap from "gsap";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import DraggableWasteItem from "../components/DraggableWasteItem";
 import DroppableWasteContainer from "../components/DroppableWasteContainer";
+import { GameProgressContext } from '../contexts/GameProgressContext';
 
 const TrashSortingGame = () => {
 
   const trueFalseRef = useRef();
   const navigate = useNavigate();
+  const { handleGameCompletion } = useContext(GameProgressContext);
 
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
 
@@ -48,20 +50,54 @@ const TrashSortingGame = () => {
     };
 
 
-    const handleEndDrag = () => {
-      //check if drag was valid and execute logic based on this:\
+    const handleEndDrag = (event) => {
+      
+      const {destination, source, draggableId} = event;
 
-      //true: 
-      //hide element at current index
-      //change state of current index onto next (check if it was the last index)
 
-      //false:
-      //return element back to its container
-      //shake animation for bin container
+
+      if (!destination) {
+        return;
+      }
+
+      if (destination.droppableId === source.draggableId) {
+        return;
+      }
+
+
+
+      //check if drag was valid and execute logic based on this:
+      const validDestination = wasteItems[currentItemIndex].relevantContainer;
+
+      if (validDestination === destination.droppableId) {
+        
+        //true: 
+        //check if it was the last index
+        if (currentItemIndex == (wasteItems.length - 1)){
+
+          handleGameCompletion("trashSortingGame");
+          //redirect to the landing
+          navigateAndScroll();
+
+        }else {
+          //change state of current index onto next
+          setCurrentItemIndex(currentItemIndex + 1);
+        }
+
+      }else {
+        //false:
+        //return element back to its container
+        //shake animation for bin container
+        return;
+        
+
+      }
+
+      
     }
 
   return (
-    <DragDropContext onDragEnd={handleEndDrag}>
+    <DragDropContext onDragEnd={(event) => handleEndDrag(event)}>
 
       <div ref={trueFalseRef} className="bg-primary flex">
 
@@ -74,14 +110,14 @@ const TrashSortingGame = () => {
 
 
 
-        <div className="px-[20px] w-[62%] justify-center flex flex-col items-center gap-8">
+        <div className=" px-[20px] w-[62%] pt-[60px] flex flex-col items-center gap-8">
 
 
           <Droppable droppableId="waste-item-container">
                 
             {(provided) => (
 
-              <div {...provided.droppableProps} ref={provided.innerRef} className="mb-[40px] max-w-[425px] max-h-[360px] bg-white rounded-[30px] px-[50px] pt-[40px] pb-[20px]">
+              <div {...provided.droppableProps} ref={provided.innerRef} className="max-w-[325px] max-h-[260px] mb-[200px] lg:max-w-[425px] lg:max-h-[360px] bg-white rounded-[30px] px-[50px] pt-[40px] pb-[20px]">
 
               <DraggableWasteItem
                 itemIndex={wasteItems[currentItemIndex].index} 
@@ -99,7 +135,7 @@ const TrashSortingGame = () => {
 
 
 
-          <div className="max-w-[1040px] flex">
+          <div className="max-w-[1040px] gap-[210px] max-h-[394px] flex">
 
             <DroppableWasteContainer recycleType={"landfill"}/>
             <DroppableWasteContainer recycleType={"recycling"}/>

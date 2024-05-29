@@ -1,52 +1,49 @@
 import { Droppable } from "react-beautiful-dnd";
 /* eslint-disable react/prop-types */
-const DroppableWasteContainer = ({recycleType}) => {
-    //will be a swithch to return different svg-components
-    switch(recycleType){
-        case "landfill":
-            return(
 
-                <Droppable droppableId={recycleType}>
-                    {(provided) => (
-                        <div {...provided.droppableProps} ref={provided.innerRef}>
-                            <img src="../../public/WasteSorting/landfill-bin.svg" alt="landfill bin" />
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-                
-            );
-            
-        case "recycling":
-            return(
-
-                <Droppable droppableId={recycleType}>
-                    {(provided) => (
-                        <div {...provided.droppableProps} ref={provided.innerRef}>
-                            <img src="../../public/WasteSorting/recycling-bin.svg" alt="landfill bin" />
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-                
-            )
-        case "compost":
-            return(
-
-                <Droppable droppableId={recycleType}>
-                    {(provided) => (
-                        <div {...provided.droppableProps} ref={provided.innerRef}>
-                            <img src="../../public/WasteSorting/compost-bin.svg" alt="landfill bin" />
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-
- 
-            )
-        
+const DroppableWasteContainer = ({ recycleType }) => {
+  const binImages = {
+    landfill: {
+      bin: "../../public/WasteSorting/landfill-bin.svg",
+      lid: "../../public/WasteSorting/landfill-lid.svg"
+    },
+    recycling: {
+      bin: "../../public/WasteSorting/recycling-bin.svg",
+      lid: "../../public/WasteSorting/recycling-lid.svg"
+    },
+    compost: {
+      bin: "../../public/WasteSorting/compost-bin.svg",
+      lid: "../../public/WasteSorting/compost-lid.svg"
     }
+  };
 
+  return (
+    <Droppable droppableId={recycleType}>
+      {(provided, snapshot) => (
+        <div 
+          {...provided.droppableProps} 
+          ref={provided.innerRef} 
+          className="h-[200px] w-[100px] relative flex justify-center items-end"
+        >
+
+            <img 
+                src={binImages[recycleType].lid} 
+                alt={`${recycleType} lid`} 
+                className={`lg:max-w-[245px] relative bottom-[135%] transform transition-transform duration-300 ${snapshot.isDraggingOver ? 'rotate-45' : 'rotate-0'}`}
+                
+            />
+            <img 
+                src={binImages[recycleType].bin} 
+                alt={`${recycleType} bin`} 
+                className="lg:max-w-[245px] absolute bottom-0"
+                
+            />
+          
+            {provided.placeholder}
+        </div>
+      )}
+    </Droppable>
+  );
 }
 
-export default DroppableWasteContainer
+export default DroppableWasteContainer;

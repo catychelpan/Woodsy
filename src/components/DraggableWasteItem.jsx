@@ -13,9 +13,9 @@ const DraggableWasteItem = ({itemIndex, itemName, itemImage, relevantContainer})
                 {...provided.draggableProps} 
                 {...provided.dragHandleProps}
                 ref={provided.innerRef} 
-                className="bg-primary_light pt-4 rounded-xl cursor-pointer flex flex-col justify-center items-center"
+                className="bg-white border-[black] border-2 pt-4 rounded-xl cursor-pointer flex flex-col justify-center items-center"
             >
-                <h2 className="font-bold text-white text-base">{itemName}</h2>
+                <h2 className="font-bold text-black text-base">{itemName}</h2>
                 <img className="max-w-[205px]" src={itemImage} alt={itemName} />
             </div>
 
