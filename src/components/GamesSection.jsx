@@ -1,8 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { GameProgressContext } from '../contexts/GameProgressContext';
 import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import GameCard from './GameCard';
+import CongratulationsButton from './CongratulationsButton';
+
 gsap.registerPlugin(ScrollTrigger);
 
 function GamesSection() {
@@ -12,13 +15,28 @@ function GamesSection() {
     const card3 = useRef(null);
     const title1 = useRef(null);
     const title2 = useRef(null);
+    const treasure = useRef(null);
     const parallaxRef = useRef(null);
 
     const navigate = useNavigate();
+    const {gameProgress} = useContext(GameProgressContext);
 
     
 
     useEffect(() => {
+
+          gsap.to(treasure.current, {
+
+            opacity: 1,
+            y: -50, 
+            scrollTrigger: {
+              trigger: treasure.current,
+              start: 'top 70%', 
+              end: 'top 40%', 
+              scrub: true,
+              
+            }
+          });
           
           const cards = [card1, card2, card3];
           cards.forEach((cardRef) => {
@@ -73,12 +91,13 @@ function GamesSection() {
 
   }
   return (
-    <div id="gameSection" ref={parallaxRef} className="bg-secondary rounded-t-[100px] max-h-[1330px]">
+    <div id="gameSection" ref={parallaxRef} className="bg-secondary rounded-t-[100px] max-h-[1390px]">
         <h1 ref={title1} className="z-0  font-bold text-[300px] pt-[450px] mt-[-90px] mr-[50px] text-right leading-[100%] text-primary_light">SAVE THE</h1>
         <h1 ref={title2} className="z-0  font-bold text-[300px] mt-[10px] mr-[50px] text-right leading-[100%] text-primary_light">WOOD</h1>
         <GameCard ref={card1} styles={"bottom-[840px] left-[26%]"} gameName={"True or False"} handlePlayClick={() => handlePlayClick("Game 1")} gameProgressName={"trueFalseGame"} wonItem={"../../public/landing/SpellsItem.svg"}/>
         <GameCard ref={card2} styles={"bottom-[850px] left-[65%]"} gameName={"Sort It Out"} handlePlayClick={() => handlePlayClick("Game 3")} gameProgressName={"trashSortingGame"} wonItem={"../../public/landing/ElixirItem.svg"}/>
         <GameCard ref={card3} styles={"bottom-[950px] left-[20%]"} gameName={"Find Impact"} handlePlayClick={() => handlePlayClick("Game 2")} gameProgressName={"findImpactGame"} wonItem={"../../public/landing/GlobeItem.svg"}/>
+        {Object.values(gameProgress).every(Boolean) && <CongratulationsButton/>}
     </div>
   )
 }

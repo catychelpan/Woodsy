@@ -47,6 +47,8 @@ const TrueFalseGame = () => {
         updatedUnansweredCards.splice(currentIndex, 1);
         if (updatedUnansweredCards.length === 0) {
           handleGameCompletion("trueFalseGame");
+
+          
           //redirect to the landing
           navigateAndScroll();
           
@@ -67,6 +69,7 @@ const TrueFalseGame = () => {
 
  
   }
+
 
 
 

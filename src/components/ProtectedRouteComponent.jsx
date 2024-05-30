@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Navigate, Outlet} from 'react-router-dom';
+import { Navigate} from 'react-router-dom';
 import { GameProgressContext } from '../contexts/GameProgressContext';
 
 const ProtectedRoute = () => {
@@ -8,10 +8,8 @@ const ProtectedRoute = () => {
 
   return (
     // Render Congratulations conditionally
-    allGamesCompleted ? <Outlet/> : <Navigate to="/story" />
+    allGamesCompleted ? <Navigate to="/congratulations" /> : <Navigate to="/story" />
   );
-
-  
 
 };
 

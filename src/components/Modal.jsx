@@ -27,12 +27,7 @@ function Modal({pairIndex, onClose, counterState}) {
       };
 
       
-    useEffect(() => {
-        if (isRedirect) {
-          handleGameCompletion("findImpactGame");
-          navigateAndScroll();
-        }
-    }, [isRedirect, handleGameCompletion, navigateAndScroll]);
+   
 
 
     useEffect(() => {
@@ -43,11 +38,16 @@ function Modal({pairIndex, onClose, counterState}) {
 
 
     const hide = () => {
+
+        if (isRedirect) {
+            handleGameCompletion("findImpactGame");
+
+
+            navigateAndScroll();
+          }
         
         onClose(false)
     }
-
-    
 
     return (
         <div className='fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center'>

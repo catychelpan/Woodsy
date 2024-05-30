@@ -62,6 +62,8 @@ const TrashSortingGame = () => {
         if (currentItemIndex == (wasteItems.length - 1)){
 
           handleGameCompletion("trashSortingGame");
+
+          
           //redirect to the landing
           navigateAndScroll();
 
@@ -79,6 +81,7 @@ const TrashSortingGame = () => {
       }
       
     }
+
 
     
 
