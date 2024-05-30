@@ -1,8 +1,7 @@
 
 import 'reactflow/dist/style.css';
-import { useCallback, useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { GameProgressContext } from '../contexts/GameProgressContext';
+import { useCallback, useState } from 'react';
+
 import ReactFlow, {
     Controls,
     Background,
@@ -11,6 +10,7 @@ import ReactFlow, {
     addEdge,
     MarkerType
   } from 'reactflow';
+  import Modal from './Modal';
 
 
 const initialNodes = [
@@ -95,21 +95,8 @@ function FlowPanel() {
     const [nodes, setNodes] = useState(initialNodes);
     const [edges, setEdges] = useState(initialEdges);
     const [counter, setCounter] = useState(0);
-    const {handleGameCompletion} = useContext(GameProgressContext);
-    const navigate = useNavigate();
-
-
-
-    const navigateAndScroll = () => {
-        navigate("/story");
-        setTimeout(() => {
-          const gameSection = document.getElementById("gameSection");
-          if (gameSection) {
-            gameSection.scrollIntoView({ behavior: "smooth" });
-          }
-        }, 100); // Delay for smoother scroll
-      };
-
+    const [showModal, setShowModal] = useState(false);
+    const [currentPairIndex, setcurrentPairIndex] = useState(0);
 
 
     const onNodesChange = useCallback(
@@ -135,7 +122,9 @@ function FlowPanel() {
                     markerEnd: { type: MarkerType.ArrowClosed },
                   }, eds));
                   setCounter((prevCounter) => prevCounter + 1);
-                  //show a card with details
+                  //change the current pair index and enable showing a pop up
+                  setcurrentPairIndex(params.source);
+                  setShowModal(true);
                   
             }else {
                 alert('Invalid Match!');
@@ -144,12 +133,7 @@ function FlowPanel() {
         [],
     );
 
-    useEffect(() => {
-        if (counter === 5) {
-          handleGameCompletion("findImpactGame");
-          navigateAndScroll();
-        }
-    }, [counter, handleGameCompletion, navigateAndScroll]);
+    
 
    
 
@@ -164,6 +148,14 @@ function FlowPanel() {
         <Background />
         <Controls />
       </ReactFlow>
+      {showModal && (
+                <Modal
+                    pairIndex={currentPairIndex}
+                    onClose={setShowModal}
+                    counterState={counter}
+                />
+            )}
+      
     </div>
   );
 }

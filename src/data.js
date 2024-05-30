@@ -165,4 +165,49 @@ const wasteItems = [
     
   ];
 
-  export {wasteItems,facts};
+
+
+  const details = {
+    '1': {
+
+        action: 'Reducing Meat Consumption',
+        impact: 'Decreases Deforestation and Greenhouse Gas Emissions',
+        description: 'By consuming less meat, you can significantly reduce the demand for livestock farming, which is a major driver of deforestation and a source of methane emissions, a potent greenhouse gas.',
+        resources: ['https://www.verywellfit.com/plant-based-lifestyle-environmental-benefits-6891044#:~:text=Plant%2Dbased%20eating%20has%20a,leaching%20into%20water%20and%20soil.', 'https://www.greenpeace.org.uk/news/why-meat-is-bad-for-the-environment/'],
+        
+    },
+    '3': {
+
+        action: 'Using Public Transportation',
+        impact: 'Reduces Carbon Footprint',
+        description: 'Opting for public transportation instead of personal vehicles can significantly reduce your carbon footprint, helping to decrease the overall emissions of greenhouse gases.',
+        resources: ['https://www.nationalgeographic.com/environment/article/public-transportation', 'https://davidsuzuki.org/expert-article/the-many-benefits-of-public-transit/'],
+        
+    },
+    '5': {
+
+        action: 'Recycling',
+        impact: 'Conserves Resources and Reduces Pollution',
+        description: 'Recycling helps conserve natural resources and reduces pollution by decreasing the need for raw material extraction and waste in landfills.',
+        resources: ['https://www.bbc.com/future/article/20230317-how-recycling-can-help-the-climate-and-other-facts', 'https://www.epa.gov/recycle/recycling-basics-and-benefits'],
+        
+    },
+    '7': {
+
+        action: 'Conserving Water',
+        impact: 'Preserves Water Resources and Energy',
+        description: 'By reducing water usage, you can help preserve this precious resource and save the energy required to pump, heat, and treat water.',
+        resources: ['https://www.nationalgeographic.com/environment/article/water-conservation-tips', 'https://earth.org/understanding-the-importance-of-water-conservation/'],
+        
+    },
+    '9': {
+
+        action: 'Planting Trees',
+        impact: 'Enhances Biodiversity and Sequesters Carbon',
+        description: 'Planting trees helps enhance biodiversity by providing habitats for wildlife and sequesters carbon dioxide, mitigating the effects of climate change.',
+        resources: ['https://www.woodlandtrust.org.uk/trees-woods-and-wildlife/british-trees/how-trees-fight-climate-change/', 'https://www.zurich.com/en/media/magazine/2021/can-reforestation-uproot-climate-change'],
+        
+    },
+};
+
+  export {wasteItems, facts, details};
