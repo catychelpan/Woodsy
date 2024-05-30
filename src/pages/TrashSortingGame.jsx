@@ -75,12 +75,12 @@ const TrashSortingGame = () => {
         //return element back to its container
         //shake animation for bin container
         return;
-        
 
       }
-
       
     }
+
+    
 
   return (
     <DragDropContext onDragEnd={(event) => handleEndDrag(event)}>
