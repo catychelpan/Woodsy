@@ -7,6 +7,7 @@ export const GameProgressContext = React.createContext()
 
 export const GameProgressProvider = ({children}) => {
 
+
  
     const [gameProgress, setGameProgress] = useState({
         "trueFalseGame":false,
@@ -17,6 +18,8 @@ export const GameProgressProvider = ({children}) => {
     
 
     const handleGameCompletion = (game) => {
+
+
         setGameProgress((prevState) => ({
           ...prevState,
           [game]: true,

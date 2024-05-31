@@ -5,7 +5,9 @@ import { useEffect, useRef } from "react"
 import gsap from "gsap";
 
 
+
 const Landing = () => {
+
 
   const landingRef = useRef(null);
 
