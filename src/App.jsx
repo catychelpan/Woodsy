@@ -1,6 +1,5 @@
 import './index.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { GameProgressProvider } from './contexts/GameProgressContext.jsx';
 import React, {Suspense} from 'react'
 import Preloader from './components/Preloader.jsx';
 
@@ -16,7 +15,7 @@ const FindImpactGame = React.lazy(() => import('./pages/FindImpactGame.jsx'))
 function App() {
   return (
     <Suspense fallback={'...Loading'}>
-      <GameProgressProvider>
+     
           <Router>
             <Routes>
               <Route path="/" element={<Preloader />} />
@@ -26,7 +25,7 @@ function App() {
               <Route path="/trash-sorting-game" element={<TrashSortingGame />} />
             </Routes>
           </Router>
-      </GameProgressProvider>
+      
     </Suspense>
   );
 }
