@@ -1,6 +1,8 @@
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom";
+import Environment1 from "../../public/loader-gallery/environment1.jpg"
+//import LoggedInIcon from '../assets/logged_icon.svg?react'
 
 const Preloader = () => {
 
@@ -110,7 +112,7 @@ const Preloader = () => {
 
         <div className="gallery h-full">
             <div className="img">
-                <img src="../../public/loader-gallery/environment1.jpg" alt="" />
+                <Environment1 />
             </div>
             <div className="img">
                 <img src="../../public/loader-gallery/environment2.jpg" alt="" />
