@@ -27,8 +27,6 @@ function Modal({pairIndex, onClose, counterState}) {
       };
 
       
-   
-
 
     useEffect(() => {
         if (counterState === 5) {

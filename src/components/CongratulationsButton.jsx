@@ -1,12 +1,12 @@
-import { useNavigate } from "react-router-dom";
+
+/* eslint-disable react/prop-types */
 
 
-function CongratulationsButton() {
+function CongratulationsButton({onOpen}) {
 
-    const navigate = useNavigate();
-    
+
   return (
-    <div onClick={() => navigate("/congratulations")} className='max-w-[400px] relative cursor-pointer lg:top-[-1150px] lg:left-[1100px]'>
+    <div onClick={onOpen} className='max-w-[400px] relative cursor-pointer lg:top-[-1150px] lg:left-[1100px]'>
       <img src="../../public/landing/treasure-box.png" alt="treasure box" />
     </div>
   )
