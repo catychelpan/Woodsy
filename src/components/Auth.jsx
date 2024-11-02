@@ -29,6 +29,17 @@ const AuthPage = () => {
         }
     }
 
+
+    const login = async () => {
+        try {
+            const { data } = await axios.post('/user', { email, password })
+            setUser({ email: data.email, quizzes: data.quizzes })
+        }
+        catch (error) {
+
+        }
+    }
+
     const handleRegister = async (event) => {
         await register();
     }
