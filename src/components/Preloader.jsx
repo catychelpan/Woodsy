@@ -116,7 +116,7 @@ const Preloader = () => {
                 <div className="text-revealer"></div>
             </div> 
             <div className="text">
-                <p>It is our reality</p>
+                <p>It is our reality!</p>
                 <div className="text-revealer"></div>
             </div>
         </div>
