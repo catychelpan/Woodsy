@@ -1,6 +1,11 @@
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react"
 import ScrollTrigger from "gsap/src/ScrollTrigger";
+import Mountain1 from "../assets/forest/mountain1.svg"
+import Mountain2 from "../assets/forest/mountain3.svg"
+import Forest from "../assets/forest/forest.png"
+import Grass from "../assets/forest/grass.svg"
+import Flames from "../assets/forest/flames.svg"
 
 function Parallax() {
 
@@ -101,11 +106,11 @@ function Parallax() {
     <div className="parallax-outer">
         <div ref={parallaxRef} style={{ background: `linear-gradient(#61B0BA, #fef8e4 ${background}%, #fef8e4, #2f8994 )` }} className="parallax">
 
-            <img ref={mountain1} className="mountain-1" src="../../public/forest/mountain1.svg" alt="mountain1" />
-            <img ref={mountain2} className="mountain-2" src="../../public/forest/mountain3.svg" alt="mountain2" />
-            <img ref={forest} className="forest" src="../../public/forest/forest.png" alt="forest" />
-            <img id="grass" ref={grass} className="forest" src="../../public/forest/grass.svg" alt="grass" />              
-            <img ref={flames} className="flames" src="../../public/forest/flames.svg" alt="flames"/>
+            <img ref={mountain1} className="mountain-1" src={Mountain1} alt="mountain1" />
+            <img ref={mountain2} className="mountain-2" src={Mountain2} alt="mountain2" />
+            <img ref={forest} className="forest" src={Forest} alt="forest" />
+            <img id="grass" ref={grass} className="forest" src={Grass} alt="grass" />              
+            <img ref={flames} className="flames" src={Flames} alt="flames"/>
             
             
             <h2 className="intro" ref={intro} >once, on a beautifual and peacful day</h2>
