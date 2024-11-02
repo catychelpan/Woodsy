@@ -35,8 +35,8 @@ const AuthPage = () => {
 
 
     return <>
-        <input type="text" />
-        <input type="password" />
+        <input type="text" onChange={(e) => setState(prev => ({...prev, email: e.currentTarget.value }))} />
+        <input type="password" onChange={(e) => setState(prev => ({...prev, password: e.currentTarget.value }))} />
         <button onClick={handleRegister}>Register</button>
         { error ? (
             <p>Error</p>
