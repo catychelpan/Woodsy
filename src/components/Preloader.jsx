@@ -1,6 +1,19 @@
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom";
+import FirstImage from '../assets/loader-gallery/environment1.jpg'
+import SecondImage from '../assets/loader-gallery/environment2.jpg'
+import ThirdImage from '../assets/loader-gallery/environment3.jpg'
+import FourthImage from '../assets/loader-gallery/environment4.jpg'
+import FifthImage from '../assets/loader-gallery/environment5.jpg'
+import SixthImage from '../assets/loader-gallery/environment6.jpg'
+import SeventhImage from '../assets/loader-gallery/environment7.jpg'
+import EighthImage from '../assets/loader-gallery/environment8.jpg'
+import NinthImage from '../assets/loader-gallery/environment9.jpeg'
+import TenthImage from '../assets/loader-gallery/environment10.jpg'
+import EleventhImage from '../assets/loader-gallery/environment11.jpg'
+
+
 
 const Preloader = () => {
 
@@ -110,37 +123,37 @@ const Preloader = () => {
 
         <div className="gallery h-full">
             <div className="img">
-                <img src="../../public/loader-gallery/environment1.jpg" alt="" />
+                <img src={FirstImage} alt="" />
             </div>
             <div className="img">
-                <img src="../../public/loader-gallery/environment2.jpg" alt="" />
+                <img src={SecondImage} alt="" />
             </div>
             <div className="img">
-                <img src="../../public/loader-gallery/environment3.jpg" alt="" />
+                <img src={ThirdImage} alt="" />
             </div>
             <div className="img">
-                <img src="../../public/loader-gallery/environment4.jpg" alt="" />
+                <img src={FourthImage} alt="" />
             </div>
             <div className="img">
-                <img src="../../public/loader-gallery/environment5.jpg" alt="" />
+                <img src={FifthImage} alt="" />
             </div>
             <div className="img">
-                <img src="../../public/loader-gallery/environment6.jpg" alt="" />
+                <img src={SixthImage} alt="" />
             </div>
             <div className="img">
-                <img src="../../public/loader-gallery/environment7.jpg" alt="" />
+                <img src={SeventhImage} alt="" />
             </div>
             <div className="img">
-                <img src="../../public/loader-gallery/environment8.jpg" alt="" />
+                <img src={EighthImage} alt="" />
             </div>
             <div className="img">
-                <img src="../../public/loader-gallery/environment9.jpeg" alt="" />
+                <img src={NinthImage} alt="" />
             </div>
             <div className="img">
-                <img src="../../public/loader-gallery/environment10.jpg" alt="" />
+                <img src={TenthImage} alt="" />
             </div>
             <div className="img">
-                <img src="../../public/loader-gallery/environment11.jpg" alt="" />
+                <img src={EleventhImage} alt="" />
             </div>
         </div>
 
