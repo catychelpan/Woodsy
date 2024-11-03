@@ -1,9 +1,9 @@
-import axios from "axios"
 import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { GameProgressContext } from "../contexts/GameProgressContext"
 import gsap from "gsap";
 import RegisterImage from "../assets/landing/CongratulationsCharactersGroup.svg"
+import axios from '../network/axios';
 
 
 const RegisterPage = () => {
@@ -63,12 +63,13 @@ const RegisterPage = () => {
 
     const register = async () => {
         try {
-            const { data } = await axios.post('/api/users/create', { email: state.email, password: state.password })
+            const { data } = await axios.post('/api/users/create/', { email: state.email, password: state.password })
 
-            setUser({ email: data.email, quizzes: data.quizzes })
+            setUser({ email: data.user.email, quizzes: data.user.quizzes })
 
-            localStorage.setItem('access_token', data.tokens.access);
-            localStorage.setItem('refresh_token', data.tokens.refresh);
+            localStorage.setItem('access_token', data.access);
+
+            localStorage.setItem('refresh_token', data.refresh);
 
             handleSignClick();
 
