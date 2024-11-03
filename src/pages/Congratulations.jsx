@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import {X} from 'lucide-react';
+import CongratulationsImage from "../assets/landing/CongratulationsCharactersGroup.svg"
+
 
 
 const Congratulations = ({onClose}) => {
@@ -18,7 +20,7 @@ const Congratulations = ({onClose}) => {
 
 
 
-        <img className='lg:w-[60%]' src="../../public/CongratulationsCharactersGroup.svg" alt="" />
+        <img className='lg:w-[60%]' src={CongratulationsImage} alt="" />
       </div>
       
     </div>
