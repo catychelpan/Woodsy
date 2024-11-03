@@ -26,17 +26,21 @@ const LoginPage = () => {
 
     const [error, setError] = useState(false);
 
-    const { setUser } = useContext(GameProgressContext);
+    const { setUser, setGameProgress } = useContext(GameProgressContext);
 
 
     const login = async () => {
         try {
             const { data } = await axios.post('/api/users/login', { email: state.email, password: state.password })
             setUser({ email: data.user.email, quizzes: data.user.quizzes })
-
-            localStorage.setItem('access_token', data.access);
-            localStorage.setItem('refresh_token', data.refresh);
-            
+            setGameProgress((prevState) => ({
+                ...prevState,
+                trueFalseGame: data.user.quizzes.find(item => item.title === 'trueFalseGame').passed,
+                trashSortingGame: data.user.quizzes.find(item => item.title === 'trashSortingGame').passed,
+                findImpactGame: data.user.quizzes.find(item => item.title === 'findImpactGame').passed,
+            }));
+            localStorage.setItem('access_token', data.tokens.access);
+            localStorage.setItem('refresh_token', data.tokens.refresh);
             handleSignClick();
         }
         catch (error) {
@@ -64,7 +68,6 @@ const LoginPage = () => {
                         </h1>
 
                     </div>       
-                    
                     
                         <div>
                             <label className="block text-teal-800 mb-2">

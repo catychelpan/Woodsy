@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GameProgressContext } from '../contexts/GameProgressContext';
 import { details } from '../data';
+import axios from '../network/axios';
 
 
 function Modal({pairIndex, onClose, counterState}) {
@@ -14,6 +15,15 @@ function Modal({pairIndex, onClose, counterState}) {
     const navigate = useNavigate();
     const {handleGameCompletion} = useContext(GameProgressContext);
     const [isRedirect, setIsRedirect] = useState(false);
+
+    const markAsPassed = async () => {
+      try {
+        const token = localStorage.getItem("access_token");
+        await axios.put('/api/quizzes/update-status/', { title: "findImpactGame", passed: true }, { headers: { Authorization: `Bearer ${token}` } })
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
 
     const navigateAndScroll = () => {
@@ -38,10 +48,10 @@ function Modal({pairIndex, onClose, counterState}) {
     const hide = () => {
 
         if (isRedirect) {
+          markAsPassed().then(() => {
             handleGameCompletion("findImpactGame");
-
-
             navigateAndScroll();
+          });
           }
         
         onClose(false)

@@ -4,6 +4,7 @@ import TrueFalseCard from "../components/TrueFalseCard"
 import { GameProgressContext } from '../contexts/GameProgressContext';
 import gsap from "gsap";
 import {facts} from "../data";
+import axios from "../network/axios";
 
 const TrueFalseGame = () => {
 
@@ -24,6 +25,15 @@ const TrueFalseGame = () => {
     });
   }, []);
 
+  const markAsPassed = async () => {
+    try {
+      const token = localStorage.getItem("access_token");
+      await axios.put('/api/quizzes/update-status/', { title: "trueFalseGame", passed: true }, { headers: { Authorization: `Bearer ${token}` } })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   const navigateAndScroll = () => {
     navigate("/story");
@@ -37,7 +47,7 @@ const TrueFalseGame = () => {
 
 
   //also add animation to switch to the next card
-  function handleNextCard(gotItRight) {
+  const handleNextCard = (gotItRight) => {
 
     setUnansweredCards((prevUnansweredCards) => {
       let updatedUnansweredCards = [...prevUnansweredCards];
@@ -46,28 +56,21 @@ const TrueFalseGame = () => {
       if (gotItRight) {
         updatedUnansweredCards.splice(currentIndex, 1);
         if (updatedUnansweredCards.length === 0) {
-          handleGameCompletion("trueFalseGame");
-
-          
-          //redirect to the landing
-          navigateAndScroll();
-          
-        }else{
+          markAsPassed().then(() => {
+            handleGameCompletion("trueFalseGame");
+            navigateAndScroll();
+          });
+        } else {
           const nextIndex = currentIndex === updatedUnansweredCards.length ? 0 : currentIndex;
           setCurrentCard(updatedUnansweredCards[nextIndex]);
         }
         
-      }else{
+      } else {
         const nextIndex = currentIndex === updatedUnansweredCards.length - 1 ? 0 : currentIndex + 1;
         setCurrentCard(updatedUnansweredCards[nextIndex]);
       }
-
-      
-      
       return updatedUnansweredCards;
     });
-
- 
   }
 
 

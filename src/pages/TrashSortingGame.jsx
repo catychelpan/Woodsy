@@ -5,7 +5,8 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import DraggableWasteItem from "../components/DraggableWasteItem";
 import DroppableWasteContainer from "../components/DroppableWasteContainer";
 import { GameProgressContext } from '../contexts/GameProgressContext';
-import {wasteItems} from "../data";
+import { wasteItems } from "../data";
+import axios from "../network/axios";
 
 const TrashSortingGame = () => {
 
@@ -25,6 +26,18 @@ const TrashSortingGame = () => {
         ease: "power2.out",
       });
     }, []);
+
+
+    const markAsPassed = async () => {
+      try {
+        const token = localStorage.getItem("access_token");
+        await axios.put('/api/quizzes/update-status/', { title: "trashSortingGame", passed: true }, { headers: { Authorization: `Bearer ${token}` } })
+        handleGameCompletion("trashSortingGame");
+        navigateAndScroll();
+      } catch (error) {
+        console.log(error);
+      }
+    }
   
   
     const navigateAndScroll = () => {
@@ -38,7 +51,7 @@ const TrashSortingGame = () => {
     };
 
 
-    const handleEndDrag = (event) => {
+    const handleEndDrag = async (event) => {
       
       const {destination, source} = event;
 
@@ -50,8 +63,6 @@ const TrashSortingGame = () => {
         return;
       }
 
-
-
       //check if drag was valid and execute logic based on this:
       const validDestination = wasteItems[currentItemIndex].relevantContainer;
 
@@ -59,15 +70,9 @@ const TrashSortingGame = () => {
         
         //true: 
         //check if it was the last index
-        if (currentItemIndex == (wasteItems.length - 1)){
-
-          handleGameCompletion("trashSortingGame");
-
-          
-          //redirect to the landing
-          navigateAndScroll();
-
-        }else {
+        if (currentItemIndex == (wasteItems.length - 1)) {
+          await markAsPassed()
+        } else {
           //change state of current index onto next
           setCurrentItemIndex(currentItemIndex + 1);
         }
