@@ -102,7 +102,7 @@ const Preloader = () => {
           opacity: 0,
           duration: 0.75,
           onComplete: () => {
-            navigate("/story");
+            navigate("/register");
           },
         });
       };
