@@ -46,7 +46,7 @@ INSTALLED_APPS = [
 CORS_ALLOW_ALL_ORIGINS = True
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # Must be at the top
+    'corsheaders.middleware.CorsMiddleware',  
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -85,6 +85,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "http://127.0.0.1:8000"
 ]
 
 CORS_ALLOW_CREDENTIALS = True 
@@ -119,9 +120,9 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'quiz_db',          # database name
-        'USER': 'postgres',         # default postgres user
-        'PASSWORD': 'Thespy12345', # password you set during installation
+        'NAME': 'quiz_db',          
+        'USER': 'postgres',         
+        'PASSWORD': '1230984576', 
         'HOST': 'localhost',
         'PORT': '5432'
     }
